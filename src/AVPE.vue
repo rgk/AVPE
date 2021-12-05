@@ -25,17 +25,19 @@ export default {
   },
   methods: {
     explosion: function(event) {
+      // Prop defaults.
       const amount = this.amount ? this.amount : 100;
       const duration = this.duration ? this.duration : 500;
       const ease = this.ease ? this.ease : 'easeInBounce';
-      const particles = this.particles;
       const radius = this.radius ? this.radius : 50;
+
+      const particles = this.particles;
 
       for (let i = 0; i < amount; i++) {
         this.particles.push([ Math.random() * Math.PI * 2, Math.sqrt(Math.random()) * radius ]);
       }
 
-      this.$nextTick(function() {
+      this.$nextTick(() => {
         anime({
           targets: '.particle',
           duration: duration,
