@@ -13,6 +13,7 @@ export default {
   props: {
     amount: Number,
     color: String,
+    colorEnd: String,
     duration: Number,
     ease: String,
     size: String,
@@ -27,6 +28,7 @@ export default {
     explosion: function(event) {
       // Prop defaults.
       const amount = this.amount ? this.amount : 100;
+      const colorEnd = this.colorEnd ? this.colorEnd : '#000000';
       const duration = this.duration ? this.duration : 500;
       const ease = this.ease ? this.ease : 'easeInBounce';
       const radius = this.radius ? this.radius : 50;
@@ -57,6 +59,7 @@ export default {
           complete: () => {
             particles.splice(0, amount);
           },
+          backgroundColor: colorEnd,
           opacity: 0
         });
       });
@@ -65,7 +68,7 @@ export default {
   computed: {
     cssProps() {
       return {
-        '--particle-color': this.color ? this.color : 'red',
+        '--particle-color': this.color ? this.color : '#FF0000',
         '--particle-size': this.size ? this.size : '2px'
       }
     }
