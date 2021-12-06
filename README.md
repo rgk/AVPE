@@ -4,7 +4,8 @@ Anime.js Vue Particle Explosion
 Prop | Type | Function
 --- | --- | --- |
 amount | Number | Amount of particles per emit.
-color | String | Amount of particles per emit.
+color | String | Starting color, do not use literal values like 'red'.
+colorEnd | String | Ending color, do not use literal values like 'blue'.
 duration | Number | Duration of particle explosion animation, in ms.
 ease | String | Ease function. (https://easings.net/)
 size | String | Size of the particle, use CSS sizing, 2px for example.
