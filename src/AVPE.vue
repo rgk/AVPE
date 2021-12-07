@@ -1,6 +1,6 @@
 <template>
   <section @click="explosion" :style="cssProps">
-    <div v-for="particle in particles" :key="particle[0]" class="particle"></div>
+    <div v-for="particle in particles" :key="particle[1]" :class="'particle group' + particle[0]"></div>
     <slot/>
   </section>
 </template>
@@ -35,25 +35,27 @@ export default {
 
       const particles = this.particles;
 
+      const key = Date.now();
+
       for (let i = 0; i < amount; i++) {
-        this.particles.push([ Math.random() * Math.PI * 2, Math.sqrt(Math.random()) * radius ]);
+        this.particles.push([ key, Math.random() * Math.PI * 2, Math.sqrt(Math.random()) * radius ]);
       }
 
       this.$nextTick(() => {
         anime({
-          targets: '.particle',
+          targets: '.group' + key,
           duration: duration,
           easing: ease,
           translateX: (el, i) => {
             return [
               event.pageX,
-              event.pageX + (Math.cos(particles[i][0]) * particles[i][1])
+              event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
             ]
           },
           translateY: (el, i) => {
             return [
               event.pageY,
-              event.pageY + (Math.sin(particles[i][0]) * particles[i][1])
+              event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
             ]
           },
           complete: () => {
