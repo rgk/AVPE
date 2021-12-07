@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Anime.js Vue Particle Explosion",
   "main": "src/AVPE.vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rgk/AVPE.git"
+  },
   "author": "rgk",
   "homepage": "https://github.com/rgk/AVPE",
   "license": "GPL-3.0-or-later",
