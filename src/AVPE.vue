@@ -12,12 +12,15 @@ export default {
   name: 'AVPE',
   props: {
     amount: Number,
+    borderRadius: String,
     color: String,
     colorEnd: String,
     duration: Number,
     ease: String,
     size: String,
-    radius: Number
+    radius: Number,
+    startingOpacity: Number,
+    endingOpacity: Number
   },
   data() {
     return {
@@ -32,6 +35,8 @@ export default {
       const duration = this.duration ? this.duration : 500;
       const ease = this.ease ? this.ease : 'easeInBounce';
       const radius = this.radius ? this.radius : 50;
+      const startingOpacity = this.startingOpacity ? this.startingOpacity : 1;
+      const endingOpacity = this.endingOpacity ? this.endingOpacity : 0;
 
       const particles = this.particles;
 
@@ -62,7 +67,7 @@ export default {
             particles.splice(0, amount);
           },
           backgroundColor: colorEnd,
-          opacity: 0
+          opacity: [ startingOpacity, endingOpacity ]
         });
       });
     }
@@ -70,6 +75,7 @@ export default {
   computed: {
     cssProps() {
       return {
+        '--particle-border-radius': this.borderRadius ? this.borderRadius : '0',
         '--particle-color': this.color ? this.color : '#FF0000',
         '--particle-size': this.size ? this.size : '2px'
       }
@@ -81,6 +87,7 @@ export default {
 <style lang="scss" scoped>
   .particle {
     background-color: var(--particle-color);
+    border-radius: var(--particle-border-radius);
     display: inline;
     overflow: hidden;
     position: fixed;
