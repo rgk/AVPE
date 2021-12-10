@@ -12,15 +12,17 @@ export default {
   name: 'AVPE',
   props: {
     amount: Number,
-    borderRadius: String,
-    color: String,
+    borderRadiusStart: String,
+    borderRadiusEnd: String,
+    colorStart: String,
     colorEnd: String,
     duration: Number,
     ease: String,
-    size: String,
-    radius: Number,
-    startingOpacity: Number,
-    endingOpacity: Number
+    opacityStart: Number,
+    opacityEnd: Number,
+    sizeStart: String,
+    sizeEnd: String,
+    radius: Number
   },
   data() {
     return {
@@ -31,12 +33,17 @@ export default {
     explosion: function(event) {
       // Prop defaults.
       const amount = this.amount ? this.amount : 100;
+      const borderRadiusStart = this.borderRadiusStart ? this.borderRadiusStart : '0';
+      const borderRadiusEnd = this.borderRadiusEnd ? this.borderRadiusEnd : '1px';
+      const colorStart = this.colorStart ? this.colorStart : '#FF0000';
       const colorEnd = this.colorEnd ? this.colorEnd : '#000000';
       const duration = this.duration ? this.duration : 500;
       const ease = this.ease ? this.ease : 'easeInBounce';
+      const opacityStart = this.opacityStart ? this.opacityStart : 1;
+      const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
       const radius = this.radius ? this.radius : 50;
-      const startingOpacity = this.startingOpacity ? this.startingOpacity : 1;
-      const endingOpacity = this.endingOpacity ? this.endingOpacity : 0;
+      const sizeStart = this.sizeStart ? this.sizeStart : '2px';
+      const sizeEnd = this.sizeEnd ? this.sizeEnd : '1px';
 
       const particles = this.particles;
 
@@ -66,8 +73,11 @@ export default {
           complete: () => {
             particles.splice(0, amount);
           },
-          backgroundColor: colorEnd,
-          opacity: [ startingOpacity, endingOpacity ]
+          backgroundColor: [ colorStart, colorEnd],
+          borderRadius: [ borderRadiusStart, borderRadiusEnd ],
+          height: [ sizeStart, sizeEnd ],
+          width: [ sizeStart, sizeEnd ],
+          opacity: [ opacityStart, opacityEnd ]
         });
       });
     }
@@ -75,9 +85,7 @@ export default {
   computed: {
     cssProps() {
       return {
-        '--particle-border-radius': this.borderRadius ? this.borderRadius : '0',
-        '--particle-color': this.color ? this.color : '#FF0000',
-        '--particle-size': this.size ? this.size : '2px'
+        '--particle-z-index': this.zindex ? this.zindex : '-1'
       }
     }
   }
@@ -86,15 +94,11 @@ export default {
 
 <style lang="scss" scoped>
   .particle {
-    background-color: var(--particle-color);
-    border-radius: var(--particle-border-radius);
     display: inline;
     overflow: hidden;
     position: fixed;
     left: 0;
     top: 0;
-    width: var(--particle-size);
-    height: var(--particle-size);
-    z-index: -1;
+    z-index: var(--particle-z-index);
   }
 </style>
