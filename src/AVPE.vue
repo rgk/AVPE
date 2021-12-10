@@ -20,9 +20,9 @@ export default {
     ease: String,
     opacityStart: Number,
     opacityEnd: Number,
+    radius: Number,
     sizeStart: String,
-    sizeEnd: String,
-    radius: Number
+    sizeEnd: String
   },
   data() {
     return {
