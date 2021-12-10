@@ -8,6 +8,8 @@
 <script>
 import anime from 'animejs';
 
+const randomColor = () => '#' + Math.random().toString(16).slice(-6);
+
 export default {
   name: 'AVPE',
   props: {
@@ -22,7 +24,8 @@ export default {
     opacityEnd: Number,
     radius: Number,
     sizeStart: String,
-    sizeEnd: String
+    sizeEnd: String,
+    zindex: Number
   },
   data() {
     return {
@@ -35,8 +38,8 @@ export default {
       const amount = this.amount ? this.amount : 100;
       const borderRadiusStart = this.borderRadiusStart ? this.borderRadiusStart : '0';
       const borderRadiusEnd = this.borderRadiusEnd ? this.borderRadiusEnd : '1px';
-      const colorStart = this.colorStart ? this.colorStart : '#FF0000';
-      const colorEnd = this.colorEnd ? this.colorEnd : '#000000';
+      const colorStart = this.colorStart ? this.colorStart : 'random';
+      const colorEnd = this.colorEnd ? this.colorEnd : 'random';
       const duration = this.duration ? this.duration : 500;
       const ease = this.ease ? this.ease : 'easeInBounce';
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
@@ -73,7 +76,12 @@ export default {
           complete: () => {
             particles.splice(0, amount);
           },
-          backgroundColor: [ colorStart, colorEnd],
+          backgroundColor: () => {
+            return [
+              colorStart === 'random' ? randomColor() : colorStart,
+              colorEnd === 'random' ? randomColor() : colorEnd
+            ]
+          },
           borderRadius: [ borderRadiusStart, borderRadiusEnd ],
           height: [ sizeStart, sizeEnd ],
           width: [ sizeStart, sizeEnd ],
