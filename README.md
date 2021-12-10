@@ -6,8 +6,8 @@ Prop | Type | Default | Function
 amount | Number | 100 | Amount of particles per emit.
 borderRadiusStart | Number | 0 | Sets the border-radius property on the particle at the start.
 borderRadiusEnd | Number | 1px | Sets the border-radius of the particle at the end.
-colorStart | String | #FF0000 | Starting color, do not use literal values like 'red'.
-colorEnd | String | #000000 | Ending color, do not use literal values like 'blue'.
+colorStart | String | random | Starting color, do not use literal values like 'red', has 'random' option.
+colorEnd | String | random | Ending color, do not use literal values like 'blue', has 'random' option.
 duration | Number | 500 | Duration of particle explosion animation, in ms.
 ease | String | easeInBounce | Ease function. (https://easings.net/)
 opacityStart | Number | 1 | Opacity to start the particles at.
