@@ -56,11 +56,25 @@ export default {
         this.particles.push([ key, Math.random() * Math.PI * 2, Math.sqrt(Math.random()) * radius ]);
       }
 
+      // This is so you do not need to check every element.
+      const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorEnd;
+      const colorEndLogic = colorEnd === 'random' ? () => randomColor() : () => colorEnd;
+
       this.$nextTick(() => {
         anime({
           targets: '.group' + key,
           duration: duration,
           easing: ease,
+          borderRadius: [ borderRadiusStart, borderRadiusEnd ],
+          height: [ sizeStart, sizeEnd ],
+          width: [ sizeStart, sizeEnd ],
+          opacity: [ opacityStart, opacityEnd ],
+          backgroundColor: () => {
+            return [
+              colorStartLogic(),
+              colorEndLogic()
+            ]
+          },
           translateX: (el, i) => {
             return [
               event.pageX,
@@ -75,17 +89,7 @@ export default {
           },
           complete: () => {
             particles.splice(0, amount);
-          },
-          backgroundColor: () => {
-            return [
-              colorStart === 'random' ? randomColor() : colorStart,
-              colorEnd === 'random' ? randomColor() : colorEnd
-            ]
-          },
-          borderRadius: [ borderRadiusStart, borderRadiusEnd ],
-          height: [ sizeStart, sizeEnd ],
-          width: [ sizeStart, sizeEnd ],
-          opacity: [ opacityStart, opacityEnd ]
+          }
         });
       });
     }
