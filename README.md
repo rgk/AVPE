@@ -1,6 +1,8 @@
 # AVPE
 Anime.js Vue Particle Explosion
 
+![AVPE Example](AVPE_example.gif)
+
 Prop | Type | Default | Function
 --- | --- | --- | --- |
 amount | Number | 100 | Amount of particles per emit.
@@ -13,9 +15,9 @@ ease | String | easeInBounce | Ease function. (https://easings.net/)
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
 radius | Number | 50 | Radius of particle explosion.
+rotate | Boolean | true | Enable random rotation of particles from -360 to 360.
 sizeStart | String | 2px | Size of the particle, use CSS sizing, '2px' for example.
 sizeEnd | String | 1px | Size of the particle, use CSS sizing, '1px' for example.
 zindex | Number | -1 | Sets the z-index of the particles so you can place them behind values.
 
 Here is an example of what it does via a component, which has a slot so you can add content.
-![AVPE Example](AVPE_example.gif)
