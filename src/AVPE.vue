@@ -23,6 +23,7 @@ export default {
     opacityStart: Number,
     opacityEnd: Number,
     radius: Number,
+    rotate: Boolean,
     sizeStart: String,
     sizeEnd: String,
     zindex: Number
@@ -45,6 +46,7 @@ export default {
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
       const radius = this.radius ? this.radius : 50;
+      const rotate = this.rotate ? true : false;
       const sizeStart = this.sizeStart ? this.sizeStart : '2px';
       const sizeEnd = this.sizeEnd ? this.sizeEnd : '1px';
 
@@ -59,6 +61,7 @@ export default {
       // This is so you do not need to check every element.
       const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorEnd;
       const colorEndLogic = colorEnd === 'random' ? () => randomColor() : () => colorEnd;
+      const rotateLogic = rotate ? () => Math.floor(Math.random() * (720)-360) : () => 0;
 
       this.$nextTick(() => {
         anime({
@@ -69,27 +72,20 @@ export default {
           height: [ sizeStart, sizeEnd ],
           width: [ sizeStart, sizeEnd ],
           opacity: [ opacityStart, opacityEnd ],
-          backgroundColor: () => {
-            return [
-              colorStartLogic(),
-              colorEndLogic()
-            ]
-          },
-          translateX: (el, i) => {
-            return [
-              event.pageX,
-              event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
-            ]
-          },
-          translateY: (el, i) => {
-            return [
-              event.pageY,
-              event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
-            ]
-          },
-          complete: () => {
-            particles.splice(0, amount);
-          }
+          rotate: rotateLogic(),
+          backgroundColor: () => [
+            colorStartLogic(),
+            colorEndLogic()
+          ],
+          translateX: (el, i) => [
+            event.pageX,
+            event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
+          ],
+          translateY: (el, i) => [
+            event.pageY,
+            event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
+          ],
+          complete: () => particles.splice(0, amount)
         });
       });
     }
