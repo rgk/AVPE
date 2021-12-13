@@ -23,7 +23,6 @@ export default {
     opacityStart: Number,
     opacityEnd: Number,
     radius: Number,
-    rotate: Boolean,
     rotateMin: Number,
     rotateMax: Number,
     sizeStart: String,
@@ -48,9 +47,8 @@ export default {
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
       const radius = this.radius ? this.radius : 50;
-      const rotate = this.rotate ? true : false;
-      const rotateMin = this.rotateMin ? this.rotateMin : -360;
-      const rotateMax = this.rotateMax ? this.rotateMax : 360;
+      const rotateMin = this.rotateMin ? this.rotateMin : 0;
+      const rotateMax = this.rotateMax ? this.rotateMax : 0;
       const sizeStart = this.sizeStart ? this.sizeStart : '2px';
       const sizeEnd = this.sizeEnd ? this.sizeEnd : '1px';
 
@@ -63,9 +61,8 @@ export default {
       }
 
       // This is so you do not need to check every element.
-      const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorEnd;
+      const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorStart;
       const colorEndLogic = colorEnd === 'random' ? () => randomColor() : () => colorEnd;
-      const rotateLogic = rotate ? () => Math.floor(Math.random() * (rotateMax - rotateMin) + rotateMin) : () => 0;
 
       this.$nextTick(() => {
         anime({
@@ -76,7 +73,7 @@ export default {
           height: [ sizeStart, sizeEnd ],
           width: [ sizeStart, sizeEnd ],
           opacity: [ opacityStart, opacityEnd ],
-          rotate: rotateLogic(),
+          rotate: () => Math.floor(Math.random() * (rotateMax - rotateMin) + rotateMin),
           backgroundColor: () => [
             colorStartLogic(),
             colorEndLogic()
