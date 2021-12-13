@@ -15,9 +15,8 @@ ease | String | easeInBounce | Ease function. (https://easings.net/)
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
 radius | Number | 50 | Radius of particle explosion.
-rotate | Boolean | true | Enable random rotation of particles from rotateMin to rotateMax.
-rotateMin | Number | -360 | The minimum rotate amount.
-rotateMax | Number | 360 | The maximum rotate amount.
+rotateMin | Number | 0 | The minimum rotate amount, can be negative.
+rotateMax | Number | 0 | The maximum rotate amount, can be negative.
 sizeStart | String | 2px | Size of the particle, use CSS sizing, '2px' for example.
 sizeEnd | String | 1px | Size of the particle, use CSS sizing, '1px' for example.
 zindex | Number | -1 | Sets the z-index of the particles so you can place them behind values.
