@@ -22,6 +22,10 @@ export default {
     durationMax: Number,
     durationMin: Number,
     ease: String,
+    easeBorderRadius: String,
+    easeHeight: String,
+    easeWidth: String,
+    easeOpacity: String,
     opacityStart: Number,
     opacityEnd: Number,
     radius: Number,
@@ -47,6 +51,10 @@ export default {
       const durationMax = this.durationMax ? this.durationMax : 500;
       const durationMin = this.durationMin ? this.durationMin : durationMax;
       const ease = this.ease ? this.ease : 'easeInBounce';
+      const easeBorderRadius = this.easeBorderRadius ? this.easeBorderRadius : this.ease;
+      const easeHeight = this.easeHeight ? this.easeHeight : this.ease;
+      const easeWidth = this.easeWidth ? this.easeWidth : this.ease;
+      const easeOpacity = this.easeOpacity ? this.easeOpacity : this.ease;
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
       const radius = this.radius ? this.radius : 50;
@@ -72,10 +80,22 @@ export default {
           targets: '.group' + key,
           duration: () => randomRange(durationMin, durationMax),
           easing: ease,
-          borderRadius: [ borderRadiusStart, borderRadiusEnd ],
-          height: [ sizeStart, sizeEnd ],
-          width: [ sizeStart, sizeEnd ],
-          opacity: [ opacityStart, opacityEnd ],
+          borderRadius: {
+            value: [ borderRadiusStart, borderRadiusEnd ],
+            easing: easeBorderRadius
+          },
+          height: {
+            value: [ sizeStart, sizeEnd ],
+            easing: easeHeight
+          },
+          width: {
+            value: [ sizeStart, sizeEnd ],
+            easing: easeWidth
+          },
+          opacity: {
+            value: [ opacityStart, opacityEnd ],
+            easing: easeOpacity
+          },
           rotate: randomRange(rotateMin, rotateMax),
           backgroundColor: () => [
             colorStartLogic(),
