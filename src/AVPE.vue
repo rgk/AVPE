@@ -9,6 +9,7 @@
 import anime from 'animejs';
 
 const randomColor = () => '#' + Math.random().toString(16).slice(-6);
+const randomRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
 export default {
   name: 'AVPE',
@@ -18,7 +19,8 @@ export default {
     borderRadiusEnd: String,
     colorStart: String,
     colorEnd: String,
-    duration: Number,
+    durationMax: Number,
+    durationMin: Number,
     ease: String,
     opacityStart: Number,
     opacityEnd: Number,
@@ -42,7 +44,8 @@ export default {
       const borderRadiusEnd = this.borderRadiusEnd ? this.borderRadiusEnd : '1px';
       const colorStart = this.colorStart ? this.colorStart : 'random';
       const colorEnd = this.colorEnd ? this.colorEnd : 'random';
-      const duration = this.duration ? this.duration : 500;
+      const durationMax = this.durationMax ? this.durationMax : 500;
+      const durationMin = this.durationMin ? this.durationMin : durationMax;
       const ease = this.ease ? this.ease : 'easeInBounce';
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
@@ -67,13 +70,13 @@ export default {
       this.$nextTick(() => {
         anime({
           targets: '.group' + key,
-          duration: duration,
+          duration: () => randomRange(durationMin, durationMax),
           easing: ease,
           borderRadius: [ borderRadiusStart, borderRadiusEnd ],
           height: [ sizeStart, sizeEnd ],
           width: [ sizeStart, sizeEnd ],
           opacity: [ opacityStart, opacityEnd ],
-          rotate: () => Math.floor(Math.random() * (rotateMax - rotateMin) + rotateMin),
+          rotate: randomRange(rotateMin, rotateMax),
           backgroundColor: () => [
             colorStartLogic(),
             colorEndLogic()
