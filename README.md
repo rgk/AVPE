@@ -10,7 +10,8 @@ borderRadiusStart | Number | 0 | Sets the border-radius property on the particle
 borderRadiusEnd | Number | 1px | Sets the border-radius of the particle at the end.
 colorStart | String | random | Starting color, do not use literal values like 'red', has 'random' option.
 colorEnd | String | random | Ending color, do not use literal values like 'blue', has 'random' option.
-duration | Number | 500 | Duration of particle explosion animation, in ms.
+durationMax | Number | 500 | Duration of animation, max value if durationMin is set, in ms.
+durationMin | Number | durationMax | Minimum duration of animation, defaults to the value of durationMax, in ms.
 ease | String | easeInBounce | Ease function. (https://easings.net/)
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
