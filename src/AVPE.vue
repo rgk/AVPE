@@ -31,8 +31,10 @@ export default {
     radius: Number,
     rotateMin: Number,
     rotateMax: Number,
-    sizeStart: String,
-    sizeEnd: String,
+    sizeWidthStart: String,
+    sizeHeightStart: String,
+    sizeWidthEnd: String,
+    sizeHeightEnd: String,
     zindex: Number
   },
   data() {
@@ -60,8 +62,10 @@ export default {
       const radius = this.radius ? this.radius : 50;
       const rotateMin = this.rotateMin ? this.rotateMin : 0;
       const rotateMax = this.rotateMax ? this.rotateMax : 0;
-      const sizeStart = this.sizeStart ? this.sizeStart : '2px';
-      const sizeEnd = this.sizeEnd ? this.sizeEnd : '1px';
+      const sizeWidthStart = this.sizeWidthStart ? this.sizeWidthStart : '2px';
+      const sizeHeightStart = this.sizeHeightStart ? this.sizeHeightStart : sizeWidthStart;
+      const sizeWidthEnd = this.sizeWidthEnd ? this.sizeWidthEnd : '1px';
+      const sizeHeightEnd = this.sizeHeightEnd ? this.sizeHeightEnd : sizeWidthEnd;
 
       const particles = this.particles;
 
@@ -85,11 +89,11 @@ export default {
             easing: easeBorderRadius
           },
           height: {
-            value: [ sizeStart, sizeEnd ],
+            value: [ sizeHeightStart, sizeHeightEnd ],
             easing: easeHeight
           },
           width: {
-            value: [ sizeStart, sizeEnd ],
+            value: [ sizeWidthStart, sizeWidthEnd ],
             easing: easeWidth
           },
           opacity: {
