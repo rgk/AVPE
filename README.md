@@ -22,8 +22,10 @@ opacityEnd | Number | 0 | Opacity to end the particles with.
 radius | Number | 50 | Radius of particle explosion.
 rotateMin | Number | 0 | The minimum rotate amount, can be negative.
 rotateMax | Number | 0 | The maximum rotate amount, can be negative.
-sizeStart | String | "2px" | Size of the particle, use CSS sizing, '2px' for example.
-sizeEnd | String | "1px" | Size of the particle, use CSS sizing, '1px' for example.
+sizeWidthStart | String | "2px" | Start width of the particle, use CSS sizing, '2px' for example.
+sizeHeightStart | String | sizeWidthStart | Start height of the particle, use CSS sizing, '2px' for example.
+sizeWidthEnd | String | "1px" | End width of the particle, use CSS sizing, '1px' for example.
+sizeHeightEnd | String | sizeWidthEnd | End height of the particle, use CSS sizing, '1px' for example.
 zindex | Number | -1 | Sets the z-index of the particles so you can place them behind values.
 
 Here is an example of what it does via a component, which has a slot so you can add content.
