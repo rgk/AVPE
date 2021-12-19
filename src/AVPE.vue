@@ -14,7 +14,7 @@ const randomRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 export default {
   name: 'AVPE',
   props: {
-    amount: Number,
+    amountMax: Number,
     borderRadiusStart: String,
     borderRadiusEnd: String,
     colorStart: String,
@@ -45,7 +45,8 @@ export default {
   methods: {
     explosion: function(event) {
       // Prop defaults.
-      const amount = this.amount ? this.amount : 100;
+      const amountMax = this.amountMax ? this.amount : 100;
+      const amountMin = this.amountMin ? this.amountMin : amountMax;
       const borderRadiusStart = this.borderRadiusStart ? this.borderRadiusStart : '0';
       const borderRadiusEnd = this.borderRadiusEnd ? this.borderRadiusEnd : '1px';
       const colorStart = this.colorStart ? this.colorStart : 'random';
@@ -70,6 +71,8 @@ export default {
       const particles = this.particles;
 
       const key = Date.now();
+
+      const amount = randomRange(amountMin, amountMax);
 
       for (let i = 0; i < amount; i++) {
         this.particles.push([ key, Math.random() * Math.PI * 2, Math.sqrt(Math.random()) * radius ]);
