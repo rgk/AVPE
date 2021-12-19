@@ -5,7 +5,8 @@ Anime.js Vue Particle Explosion
 
 Prop | Type | Default | Function
 --- | --- | --- | --- |
-amount | Number | 100 | Amount of particles per emit.
+amountMax | Number | 100 | Minimum amount of particles to emit.
+amountMin | Number | amountMax | Minimum amount of particles to emit.
 borderRadiusStart | Number | 0 | Sets the border-radius property on the particle at the start.
 borderRadiusEnd | Number | "1px" | Sets the border-radius of the particle at the end.
 colorStart | String | "random" | Starting color, do not use literal values like 'red', has 'random' option.
