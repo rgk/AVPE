@@ -28,9 +28,10 @@ export default {
     easeOpacity: String,
     opacityStart: Number,
     opacityEnd: Number,
-    radius: Number,
-    rotateMin: Number,
+    radiusMax: Number,
+    radiusMin: Number,
     rotateMax: Number,
+    rotateMin: Number,
     sizeWidthStart: String,
     sizeHeightStart: String,
     sizeWidthEnd: String,
@@ -60,9 +61,10 @@ export default {
       const easeOpacity = this.easeOpacity ? this.easeOpacity : this.ease;
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
-      const radius = this.radius ? this.radius : 50;
-      const rotateMin = this.rotateMin ? this.rotateMin : 0;
+      const radiusMax = this.radiusMax ? this.radiusMax : 50;
+      const radiusMin = this.radiusMin ? this.radiusMin : radiusMax;
       const rotateMax = this.rotateMax ? this.rotateMax : 0;
+      const rotateMin = this.rotateMin ? this.rotateMin : rotateMax * -1;
       const sizeWidthStart = this.sizeWidthStart ? this.sizeWidthStart : '2px';
       const sizeHeightStart = this.sizeHeightStart ? this.sizeHeightStart : sizeWidthStart;
       const sizeWidthEnd = this.sizeWidthEnd ? this.sizeWidthEnd : '1px';
@@ -75,7 +77,11 @@ export default {
       const amount = randomRange(amountMin, amountMax);
 
       for (let i = 0; i < amount; i++) {
-        this.particles.push([ key, Math.random() * Math.PI * 2, Math.sqrt(Math.random()) * radius ]);
+        this.particles.push([
+          key,
+          Math.random() * Math.PI * 2,
+          Math.sqrt(Math.random()) * randomRange(radiusMin, radiusMax)
+        ]);
       }
 
       // This is so you do not need to check every element.
