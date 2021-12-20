@@ -20,9 +20,10 @@ easeWidth | String | ease | Specific ease function for width.
 easeOpacity | String | ease | Specific ease function for opacity.
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
-radius | Number | 50 | Radius of particle explosion.
-rotateMin | Number | 0 | The minimum rotate amount in degrees, can be negative.
+radiusMax | Number | 50 | Maximum radius of particle explosion.
+radiusMin | Number | radiusMax | Minimum radius of particle explosion.
 rotateMax | Number | 0 | The maximum rotate amount in degrees, can be negative.
+rotateMin | Number | rotateMax * -1 | The minimum rotate amount in degrees, can be negative.
 sizeWidthStart | String | "2px" | Start width of the particle, use CSS sizing, '2px' for example.
 sizeHeightStart | String | sizeWidthStart | Start height of the particle, use CSS sizing, '2px' for example.
 sizeWidthEnd | String | "1px" | End width of the particle, use CSS sizing, '1px' for example.
