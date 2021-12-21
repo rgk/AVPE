@@ -17,6 +17,7 @@ export default {
     amountMax: Number,
     borderRadiusStart: String,
     borderRadiusEnd: String,
+    boxShadow: String,
     colorStart: String,
     colorEnd: String,
     durationMax: Number,
@@ -130,6 +131,7 @@ export default {
   computed: {
     cssProps() {
       return {
+        '--box-shadow': this.boxShadow ? this.boxShadow : '0 0 2px rgba(255, 255, 255, 0.123)',
         '--particle-z-index': this.zindex ? this.zindex : '-1'
       }
     }
@@ -139,6 +141,7 @@ export default {
 
 <style lang="scss" scoped>
   .particle {
+    box-shadow: var(--box-shadow);
     display: inline;
     overflow: hidden;
     position: fixed;
