@@ -9,6 +9,7 @@ amountMax | Number | 100 | Minimum amount of particles to emit.
 amountMin | Number | amountMax | Minimum amount of particles to emit.
 borderRadiusStart | Number | 0 | Sets the border-radius property on the particle at the start.
 borderRadiusEnd | Number | "1px" | Sets the border-radius of the particle at the end.
+boxShadow | String | "0 0 2px rgba(255, 255, 255, 0.123)" | Sets the CSS box-shadow property on the particles.
 colorStart | String | "random" | Starting color, do not use literal values like 'red', has 'random' option.
 colorEnd | String | "random" | Ending color, do not use literal values like 'blue', has 'random' option.
 durationMax | Number | 500 | Duration of animation, max value if durationMin is set, in ms.
