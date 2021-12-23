@@ -19,6 +19,7 @@ easeBorderRadius | String | ease | Specific ease function for borderRadius.
 easeHeight | String | ease | Specific ease function for height.
 easeWidth | String | ease | Specific ease function for width.
 easeOpacity | String | ease | Specific ease function for opacity.
+easeRotate | String | ease | Specific ease function for rotate.
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
 radiusMax | Number | 50 | Maximum radius of particle explosion.
