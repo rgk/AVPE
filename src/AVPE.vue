@@ -27,6 +27,7 @@ export default {
     easeHeight: String,
     easeWidth: String,
     easeOpacity: String,
+    easeRotate: String,
     opacityStart: Number,
     opacityEnd: Number,
     radiusMax: Number,
@@ -60,6 +61,7 @@ export default {
       const easeHeight = this.easeHeight ? this.easeHeight : this.ease;
       const easeWidth = this.easeWidth ? this.easeWidth : this.ease;
       const easeOpacity = this.easeOpacity ? this.easeOpacity : this.ease;
+      const easeRotate = this.easeRotate ? this.easeRotate : this.ease;
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
       const radiusMax = this.radiusMax ? this.radiusMax : 50;
@@ -110,7 +112,10 @@ export default {
             value: [ opacityStart, opacityEnd ],
             easing: easeOpacity
           },
-          rotate: randomRange(rotateMin, rotateMax),
+          rotate: {
+            value: randomRange(rotateMin, rotateMax),
+            easing: easeRotate
+          },
           backgroundColor: () => [
             colorStartLogic(),
             colorEndLogic()
