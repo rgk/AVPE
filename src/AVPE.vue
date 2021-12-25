@@ -1,6 +1,6 @@
 <template>
   <section @click="explosion" :style="cssProps">
-    <div v-for="particle in particles" :key="particle[1]" :class="'particle group' + particle[0]"></div>
+    <div v-for="particle in particles" :key="particle[1]" :class="'particle p' + particle[0]"></div>
     <slot/>
   </section>
 </template>
@@ -15,6 +15,7 @@ export default {
   name: 'AVPE',
   props: {
     amountMax: Number,
+    blendMode: String,
     borderRadiusStart: String,
     borderRadiusEnd: String,
     boxShadow: String,
@@ -93,7 +94,7 @@ export default {
 
       this.$nextTick(() => {
         anime({
-          targets: '.group' + key,
+          targets: '.g' + key,
           duration: () => randomRange(durationMin, durationMax),
           easing: ease,
           borderRadius: {
@@ -136,6 +137,7 @@ export default {
   computed: {
     cssProps() {
       return {
+        '--blend-mode': this.blendMode ? this.blendMode : 'overlay',
         '--box-shadow': this.boxShadow ? this.boxShadow : '0 0 2px rgba(255, 255, 255, 0.123)',
         '--particle-z-index': this.zindex ? this.zindex : '-1'
       }
@@ -146,6 +148,7 @@ export default {
 
 <style lang="scss" scoped>
   .particle {
+    background-blend-mode: var(--blend-mode);
     box-shadow: var(--box-shadow);
     display: inline;
     overflow: hidden;
