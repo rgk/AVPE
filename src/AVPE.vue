@@ -94,7 +94,7 @@ export default {
 
       this.$nextTick(() => {
         anime({
-          targets: '.g' + key,
+          targets: '.p' + key,
           duration: () => randomRange(durationMin, durationMax),
           easing: ease,
           borderRadius: {
@@ -137,7 +137,7 @@ export default {
   computed: {
     cssProps() {
       return {
-        '--blend-mode': this.blendMode ? this.blendMode : 'overlay',
+        '--blend-mode': this.blendMode ? this.blendMode : 'hard-light',
         '--box-shadow': this.boxShadow ? this.boxShadow : '0 0 2px rgba(255, 255, 255, 0.123)',
         '--particle-z-index': this.zindex ? this.zindex : '-1'
       }
@@ -148,9 +148,9 @@ export default {
 
 <style lang="scss" scoped>
   .particle {
-    background-blend-mode: var(--blend-mode);
     box-shadow: var(--box-shadow);
     display: inline;
+    mix-blend-mode: var(--blend-mode);
     overflow: hidden;
     position: fixed;
     left: 0;
