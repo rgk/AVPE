@@ -49,7 +49,7 @@ export default {
   methods: {
     explosion: function(event) {
       // Prop defaults.
-      const amountMax = this.amountMax ? this.amount : 100;
+      const amountMax = this.amountMax ? this.amountMax : 100;
       const amountMin = this.amountMin ? this.amountMin : amountMax;
       const borderRadiusStart = this.borderRadiusStart ? this.borderRadiusStart : '0';
       const borderRadiusEnd = this.borderRadiusEnd ? this.borderRadiusEnd : '1px';
