@@ -21,6 +21,8 @@ easeHeight | String | ease | Specific ease function for height.
 easeWidth | String | ease | Specific ease function for width.
 easeOpacity | String | ease | Specific ease function for opacity.
 easeRotate | String | ease | Specific ease function for rotate.
+filterStart | String | "blur(1px)" | CSS filter option, must be the same option as filterEnd, and if filterStart is not set to blur, you must match filterEnd.
+filterEnd | String | "blur(0px)" | CSS filter option, must be the same option as filterStart, and if filterEnd is not set to blur, you must match filterStart.
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
 radiusMax | Number | 50 | Maximum radius of particle explosion.
