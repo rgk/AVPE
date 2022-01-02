@@ -25,6 +25,7 @@ export default {
     durationMin: Number,
     ease: String,
     easeBorderRadius: String,
+    easeFilter: String,
     easeHeight: String,
     easeWidth: String,
     easeOpacity: String,
@@ -62,6 +63,7 @@ export default {
       const durationMin = this.durationMin ? this.durationMin : durationMax;
       const ease = this.ease ? this.ease : 'easeInBounce';
       const easeBorderRadius = this.easeBorderRadius ? this.easeBorderRadius : this.ease;
+      const easeFilter = this.easeFilter ? this.easeFilter : this.ease;
       const easeHeight = this.easeHeight ? this.easeHeight : this.ease;
       const easeWidth = this.easeWidth ? this.easeWidth : this.ease;
       const easeOpacity = this.easeOpacity ? this.easeOpacity : this.ease;
@@ -123,10 +125,10 @@ export default {
             value: randomRange(rotateMin, rotateMax),
             easing: easeRotate
           },
-          filter: [
-            filterType + '(' + filterStart + ')',
-            filterType + '(' + filterEnd + ')'
-          ],
+          filter: {
+            value: [ filterStart, filterEnd ],
+            easing: easeFilter
+          },
           backgroundColor: () => [
             colorStartLogic(),
             colorEndLogic()
