@@ -17,13 +17,13 @@ durationMax | Number | 500 | Duration of animation, max value if durationMin is 
 durationMin | Number | durationMax | Minimum duration of animation, defaults to the value of durationMax, in ms.
 ease | String | "easeInBounce" | Main ease function. (https://easings.net/)
 easeBorderRadius | String | ease | Specific ease function for borderRadius.
+easeFilter | String | ease | Specific ease function for filters.
 easeHeight | String | ease | Specific ease function for height.
 easeWidth | String | ease | Specific ease function for width.
 easeOpacity | String | ease | Specific ease function for opacity.
 easeRotate | String | ease | Specific ease function for rotate.
-filterType | String | "blur" | CSS filter type option, if set the values for filterStart & filterEnd need to be specific to this.
-filterStart | String | "1px" | CSS filter value for the start of the effect.
-filterEnd | String | "0px" | CSS filter value for the end of the effect.
+filterStart | String | "blur(1px)" | CSS filter value(s) for the start of the effect, make sure they match filterEnd.
+filterEnd | String | "blur(0px)" | CSS filter value(s) for the end of the effect, make sure they match filterStart.
 opacityStart | Number | 1 | Opacity to start the particles at.
 opacityEnd | Number | 0 | Opacity to end the particles with.
 radiusMax | Number | 50 | Maximum radius of particle explosion.
