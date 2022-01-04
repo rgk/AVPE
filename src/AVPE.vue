@@ -30,6 +30,8 @@ export default {
     easeWidth: String,
     easeOpacity: String,
     easeRotate: String,
+    easeX: String,
+    easeY: String,
     filterType: String,
     filterStart: String,
     filterEnd: String,
@@ -68,6 +70,8 @@ export default {
       const easeWidth = this.easeWidth ? this.easeWidth : this.ease;
       const easeOpacity = this.easeOpacity ? this.easeOpacity : this.ease;
       const easeRotate = this.easeRotate ? this.easeRotate : this.ease;
+      const easeX = this.easeX ? this.easeX : this.ease;
+      const easeY = this.easeY ? this.easeY : this.ease;
       const filterType = this.filterStart ? this.filterStart : 'blur';
       const filterStart = this.filterStart ? this.filterStart : '1px';
       const filterEnd = this.filterEnd ? this.filterEnd : '0px';
@@ -100,6 +104,7 @@ export default {
       const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorStart;
       const colorEndLogic = colorEnd === 'random' ? () => randomColor() : () => colorEnd;
 
+      // Divs are not present on the DOM this tick.
       this.$nextTick(() => {
         anime({
           targets: '.p' + key,
@@ -133,14 +138,20 @@ export default {
             colorStartLogic(),
             colorEndLogic()
           ],
-          translateX: (el, i) => [
-            event.pageX,
-            event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
-          ],
-          translateY: (el, i) => [
-            event.pageY,
-            event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
-          ],
+          translateX: {
+            value: (el, i) => [
+              event.pageX,
+              event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
+            ],
+            ease: easeX
+          },
+          translateY: {
+            value: (el, i) => [
+              event.pageY,
+              event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
+            ],
+            ease: easeY
+          },
           complete: () => particles.splice(0, amount)
         });
       });
