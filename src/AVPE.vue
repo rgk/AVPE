@@ -24,6 +24,7 @@ export default {
     durationMax: Number,
     durationMin: Number,
     ease: String,
+    easeBackgroundColor: String,
     easeBorderRadius: String,
     easeFilter: String,
     easeHeight: String,
@@ -64,6 +65,7 @@ export default {
       const durationMax = this.durationMax ? this.durationMax : 500;
       const durationMin = this.durationMin ? this.durationMin : durationMax;
       const ease = this.ease ? this.ease : 'easeInBounce';
+      const easeBackgroundColor = this.easeBackgroundColor ? this.easeBackgroundColor : this.ease;
       const easeBorderRadius = this.easeBorderRadius ? this.easeBorderRadius : this.ease;
       const easeFilter = this.easeFilter ? this.easeFilter : this.ease;
       const easeHeight = this.easeHeight ? this.easeHeight : this.ease;
@@ -134,10 +136,13 @@ export default {
             value: [ filterStart, filterEnd ],
             easing: easeFilter
           },
-          backgroundColor: () => [
-            colorStartLogic(),
-            colorEndLogic()
-          ],
+          backgroundColor: () => {
+            value: [
+              colorStartLogic(),
+              colorEndLogic()
+            ],
+            easing: easeBackgroundColor
+          },
           translateX: {
             value: (el, i) => [
               event.pageX,
