@@ -16,6 +16,7 @@ colorEnd | String | "random" | Ending color, do not use literal values like 'blu
 durationMax | Number | 500 | Duration of animation, max value if durationMin is set, in ms.
 durationMin | Number | durationMax | Minimum duration of animation, defaults to the value of durationMax, in ms.
 ease | String | "easeInBounce" | Main ease function. (https://easings.net/)
+easeBackgroundColor | String | ease | Specific ease function for backgroundColor.
 easeBorderRadius | String | ease | Specific ease function for borderRadius.
 easeFilter | String | ease | Specific ease function for filters.
 easeHeight | String | ease | Specific ease function for height.
