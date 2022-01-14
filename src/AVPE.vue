@@ -33,7 +33,6 @@ export default {
     easeRotate: String,
     easeX: String,
     easeY: String,
-    filterType: String,
     filterStart: String,
     filterEnd: String,
     opacityStart: Number,
@@ -74,9 +73,8 @@ export default {
       const easeRotate = this.easeRotate ? this.easeRotate : this.ease;
       const easeX = this.easeX ? this.easeX : this.ease;
       const easeY = this.easeY ? this.easeY : this.ease;
-      const filterType = this.filterStart ? this.filterStart : 'blur';
-      const filterStart = this.filterStart ? this.filterStart : '1px';
-      const filterEnd = this.filterEnd ? this.filterEnd : '0px';
+      const filterStart = this.filterStart ? this.filterStart : 'blur(1px)';
+      const filterEnd = this.filterEnd ? this.filterEnd : 'blur(0px)';
       const opacityStart = this.opacityStart ? this.opacityStart : 1;
       const opacityEnd = this.opacityEnd ? this.opacityEnd : 0;
       const radiusMax = this.radiusMax ? this.radiusMax : 50;
