@@ -38,5 +38,3 @@ sizeHeightStart | String | sizeWidthStart | Start height of the particle, use CS
 sizeWidthEnd | String | "1px" | End width of the particle, use CSS sizing, '1px' for example.
 sizeHeightEnd | String | sizeWidthEnd | End height of the particle, use CSS sizing, '1px' for example.
 zindex | Number | -1 | Sets the z-index of the particles so you can place them behind values.
-
-Here is an example of what it does via a component, which has a slot so you can add content.
