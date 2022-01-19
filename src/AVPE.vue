@@ -21,6 +21,7 @@ export default {
     boxShadow: String,
     colorStart: String,
     colorEnd: String,
+    config: Object,
     durationMax: Number,
     durationMin: Number,
     ease: String,
@@ -61,6 +62,7 @@ export default {
       const borderRadiusEnd = this.borderRadiusEnd ? this.borderRadiusEnd : '1px';
       const colorStart = this.colorStart ? this.colorStart : 'random';
       const colorEnd = this.colorEnd ? this.colorEnd : 'random';
+      const config = this.config ? this.config : {};
       const durationMax = this.durationMax ? this.durationMax : 500;
       const durationMin = this.durationMin ? this.durationMin : durationMax;
       const ease = this.ease ? this.ease : 'easeInBounce';
@@ -103,60 +105,62 @@ export default {
       // This is so you do not need to check every element.
       const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorStart;
       const colorEndLogic = colorEnd === 'random' ? () => randomColor() : () => colorEnd;
+      
+      const animeConfig = {
+        targets: '.p' + key,
+        duration: () => randomRange(durationMin, durationMax),
+        easing: ease,
+        borderRadius: {
+          value: [ borderRadiusStart, borderRadiusEnd ],
+          easing: easeBorderRadius
+        },
+        height: {
+          value: [ sizeHeightStart, sizeHeightEnd ],
+          easing: easeHeight
+        },
+        width: {
+          value: [ sizeWidthStart, sizeWidthEnd ],
+          easing: easeWidth
+        },
+        opacity: {
+          value: [ opacityStart, opacityEnd ],
+          easing: easeOpacity
+        },
+        rotate: {
+          value: randomRange(rotateMin, rotateMax),
+          easing: easeRotate
+        },
+        filter: {
+          value: [ filterStart, filterEnd ],
+          easing: easeFilter
+        },
+        backgroundColor: () => {
+          value: [
+            colorStartLogic(),
+            colorEndLogic()
+          ],
+          easing: easeBackgroundColor
+        },
+        translateX: {
+          value: (el, i) => [
+            event.pageX,
+            event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
+          ],
+          ease: easeX
+        },
+        translateY: {
+          value: (el, i) => [
+            event.pageY,
+            event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
+          ],
+          ease: easeY
+        },
+        complete: () => particles.splice(0, amount)
+      };
 
       // Divs are not present on the DOM this tick.
       this.$nextTick(() => {
-        anime({
-          targets: '.p' + key,
-          duration: () => randomRange(durationMin, durationMax),
-          easing: ease,
-          borderRadius: {
-            value: [ borderRadiusStart, borderRadiusEnd ],
-            easing: easeBorderRadius
-          },
-          height: {
-            value: [ sizeHeightStart, sizeHeightEnd ],
-            easing: easeHeight
-          },
-          width: {
-            value: [ sizeWidthStart, sizeWidthEnd ],
-            easing: easeWidth
-          },
-          opacity: {
-            value: [ opacityStart, opacityEnd ],
-            easing: easeOpacity
-          },
-          rotate: {
-            value: randomRange(rotateMin, rotateMax),
-            easing: easeRotate
-          },
-          filter: {
-            value: [ filterStart, filterEnd ],
-            easing: easeFilter
-          },
-          backgroundColor: () => {
-            value: [
-              colorStartLogic(),
-              colorEndLogic()
-            ],
-            easing: easeBackgroundColor
-          },
-          translateX: {
-            value: (el, i) => [
-              event.pageX,
-              event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
-            ],
-            ease: easeX
-          },
-          translateY: {
-            value: (el, i) => [
-              event.pageY,
-              event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
-            ],
-            ease: easeY
-          },
-          complete: () => particles.splice(0, amount)
-        });
+        anime({ ...animeConfig, ...config });
       });
     }
   },
