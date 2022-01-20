@@ -13,6 +13,7 @@ borderRadiusEnd | Number | "1px" | Sets the border-radius of the particle at the
 boxShadow | String | "0 0 2px rgba(255, 255, 255, 0.123)" | Sets the CSS box-shadow property on the particles.
 colorStart | String | "random" | Starting color, do not use literal values like 'red', has 'random' option.
 colorEnd | String | "random" | Ending color, do not use literal values like 'blue', has 'random' option.
+config | Object | {} | An Anime.js config which will be merged with the default.
 durationMax | Number | 500 | Duration of animation, max value if durationMin is set, in ms.
 durationMin | Number | durationMax | Minimum duration of animation, defaults to the value of durationMax, in ms.
 ease | String | "easeInBounce" | Main ease function. (https://easings.net/)
