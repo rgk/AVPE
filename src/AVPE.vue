@@ -22,6 +22,7 @@ export default {
     colorStart: String,
     colorEnd: String,
     config: Object,
+    defaults: Boolean,
     durationMax: Number,
     durationMin: Number,
     ease: String,
@@ -63,6 +64,7 @@ export default {
       const colorStart = this.colorStart ? this.colorStart : 'random';
       const colorEnd = this.colorEnd ? this.colorEnd : 'random';
       const config = this.config ? this.config : {};
+      const defaults = this.defaults ? this.defaults : TRUE;
       const durationMax = this.durationMax ? this.durationMax : 500;
       const durationMin = this.durationMin ? this.durationMin : durationMax;
       const ease = this.ease ? this.ease : 'easeInBounce';
@@ -105,58 +107,64 @@ export default {
       // This is so you do not need to check every element.
       const colorStartLogic = colorStart === 'random' ? () => randomColor() : () => colorStart;
       const colorEndLogic = colorEnd === 'random' ? () => randomColor() : () => colorEnd;
-      
-      const animeConfig = {
+
+      let animeConfig = {
         targets: '.p' + key,
-        duration: () => randomRange(durationMin, durationMax),
-        easing: ease,
-        borderRadius: {
-          value: [ borderRadiusStart, borderRadiusEnd ],
-          easing: easeBorderRadius
-        },
-        height: {
-          value: [ sizeHeightStart, sizeHeightEnd ],
-          easing: easeHeight
-        },
-        width: {
-          value: [ sizeWidthStart, sizeWidthEnd ],
-          easing: easeWidth
-        },
-        opacity: {
-          value: [ opacityStart, opacityEnd ],
-          easing: easeOpacity
-        },
-        rotate: {
-          value: randomRange(rotateMin, rotateMax),
-          easing: easeRotate
-        },
-        filter: {
-          value: [ filterStart, filterEnd ],
-          easing: easeFilter
-        },
-        backgroundColor: () => {
-          value: [
-            colorStartLogic(),
-            colorEndLogic()
-          ],
-          easing: easeBackgroundColor
-        },
-        translateX: {
-          value: (el, i) => [
-            event.pageX,
-            event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
-          ],
-          ease: easeX
-        },
-        translateY: {
-          value: (el, i) => [
-            event.pageY,
-            event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
-          ],
-          ease: easeY
-        },
         complete: () => particles.splice(0, amount)
       };
+
+      if (defaults) {
+        animeConfig = {
+          ...animeConfig,
+          duration: () => randomRange(durationMin, durationMax),
+          easing: ease,
+          borderRadius: {
+            value: [ borderRadiusStart, borderRadiusEnd ],
+            easing: easeBorderRadius
+          },
+          height: {
+            value: [ sizeHeightStart, sizeHeightEnd ],
+            easing: easeHeight
+          },
+          width: {
+            value: [ sizeWidthStart, sizeWidthEnd ],
+            easing: easeWidth
+          },
+          opacity: {
+            value: [ opacityStart, opacityEnd ],
+            easing: easeOpacity
+          },
+          rotate: {
+            value: randomRange(rotateMin, rotateMax),
+            easing: easeRotate
+          },
+          filter: {
+            value: [ filterStart, filterEnd ],
+            easing: easeFilter
+          },
+          backgroundColor: () => {
+            value: [
+              colorStartLogic(),
+              colorEndLogic()
+            ],
+            easing: easeBackgroundColor
+          },
+          translateX: {
+            value: (el, i) => [
+              event.pageX,
+              event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
+            ],
+            ease: easeX
+          },
+          translateY: {
+            value: (el, i) => [
+              event.pageY,
+              event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
+            ],
+            ease: easeY
+          }
+        };
+      }
 
       // Divs are not present on the DOM this tick.
       this.$nextTick(() => {
