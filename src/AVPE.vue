@@ -110,8 +110,39 @@ export default {
 
       let animeConfig = {
         targets: '.p' + key,
+        translateX: {
+          value: (el, i) => [
+            event.pageX,
+            event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
+          ],
+          ease: easeX
+        },
+        translateY: {
+          value: (el, i) => [
+            event.pageY,
+            event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
+          ],
+          ease: easeY
+        },
         complete: () => particles.splice(0, amount)
       };
+
+      if (config) {
+        for (const [key, value] of Object.entries(config)) {
+          switch (key) {
+            case 'backgroundColor':
+              for (let i = 0; i < value.length; i++) {
+                if (value[i] === 'random) value[i] = () => randomColor();
+              }
+
+              break;
+            case 'rotate':
+              if (value.length > 1) value = () => randomRange(value[0], value[1]);
+
+              break;
+          }
+        }
+      }
 
       if (defaults) {
         animeConfig = {
@@ -148,20 +179,6 @@ export default {
               colorEndLogic()
             ],
             easing: easeBackgroundColor
-          },
-          translateX: {
-            value: (el, i) => [
-              event.pageX,
-              event.pageX + (Math.cos(particles[i][1]) * particles[i][2])
-            ],
-            ease: easeX
-          },
-          translateY: {
-            value: (el, i) => [
-              event.pageY,
-              event.pageY + (Math.sin(particles[i][1]) * particles[i][2])
-            ],
-            ease: easeY
           }
         };
       }
