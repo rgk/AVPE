@@ -127,20 +127,18 @@ export default {
         complete: () => particles.splice(0, amount)
       };
 
-      if (config) {
-        for (const [key, value] of Object.entries(config)) {
-          switch (key) {
-            case 'backgroundColor':
-              for (let i = 0; i < value.length; i++) {
-                if (value[i] === 'random) value[i] = () => randomColor();
-              }
+      for (const [key, value] of Object.entries(config)) {
+        switch (key) {
+          case 'backgroundColor':
+            for (let i = 0; i < value.length; i++) {
+              if (value[i] === 'random') value[i] = () => randomColor();
+            }
 
-              break;
-            case 'rotate':
-              if (value.length > 1) value = () => randomRange(value[0], value[1]);
+            break;
+          case 'rotate':
+            if (value.length > 1) value = () => randomRange(value[0], value[1]);
 
-              break;
-          }
+            break;
         }
       }
 
