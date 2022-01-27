@@ -130,8 +130,21 @@ export default {
       for (const [key, value] of Object.entries(config)) {
         switch (key) {
           case 'backgroundColor':
-            for (let i = 0; i < value.length; i++) {
-              if (value[i] === 'random') value[i] = () => randomColor();
+            let turnFunction = false;
+            for (let i = 0; i < value['value].length; i++) {
+              if (value['value][i] === 'random') value['value][i] = () => randomColor();
+              turnFunction = true;
+            }
+
+            if (turnFunction) {
+              value = () => {
+              backgroundColor: () => {
+                value: [
+                  value['value'][0],
+                  value['value'][1]
+                ],
+                easing: value['ease']
+              }
             }
 
             break;
