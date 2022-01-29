@@ -4,6 +4,7 @@
   "description": "Anime.js Vue Particle Explosion",
   "main": "src/AVPE.vue",
   "browser": "src/AVPE.vue",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/rgk/AVPE.git"
