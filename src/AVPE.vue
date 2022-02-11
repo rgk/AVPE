@@ -132,7 +132,7 @@ export default {
           case 'backgroundColor':
             let turnFunction = false;
             for (let i = 0; i < value['value].length; i++) {
-              if (value['value][i] === 'random') value['value][i] = () => randomColor();
+              if (value['value'][i] === 'random') value['value'][i] = () => randomColor();
               turnFunction = true;
             }
 
