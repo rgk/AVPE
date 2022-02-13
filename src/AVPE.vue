@@ -138,12 +138,13 @@ export default {
 
             if (turnFunction) {
               value = () => {
-              backgroundColor: () => {
-                value: [
-                  value['value'][0],
-                  value['value'][1]
-                ],
-                easing: value['ease']
+                backgroundColor: () => {
+                  value: [
+                    value['value'][0],
+                    value['value'][1]
+                  ],
+                  easing: value['ease']
+                }
               }
             }
 
