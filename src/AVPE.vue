@@ -9,7 +9,7 @@
 import anime from 'animejs';
 
 const randomColor = () => '#' + Math.random().toString(16).slice(-6);
-const randomRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
+const randomRange = (min, max) => ~~(Math.random() * (max - min) + min);
 
 export default {
   name: 'AVPE',
