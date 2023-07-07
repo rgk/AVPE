@@ -133,7 +133,7 @@ export default {
             let turnFunction = false;
             for (let i = 0; i < value['value'].length; i++) {
               if (value['value'][i] === 'random') value['value'][i] = () => randomColor();
-              turnFunction = true;
+              if (!turnFunction) turnFunction = true;
             }
 
             if (turnFunction) {
